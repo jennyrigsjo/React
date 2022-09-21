@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './custom_styles.css';
+
+import { useState } from 'react';
+
+import ContactForm from './components/ContactForm';
+import ContactList from "./components/ContactList";
+
 
 function App() {
+  
+  const [contacts, updateContacts] = useState([]);
+  
+  const addContact = (contact) => {
+    updateContacts([...contacts, contact]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>My Contacts</h1>
+      <ContactForm addContact={addContact}/>
+      <ContactList contacts={contacts} />
     </div>
   );
 }

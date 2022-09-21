@@ -1,0 +1,43 @@
+body {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#root,
+.App {
+    width: 100%;
+}
+
+.App h1 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.contact-form-container,
+.contact-list-container {
+    margin-bottom: 2em;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+.contact-form-container h2,
+.contact-list-container h2 {
+    margin-bottom: 1em;
+}
+
+.contact-form .row {
+    margin-bottom: 0.5em;
+}
+
+/* .contact-form .field {
+    margin-bottom: 0.5em;
+} */
+
+.contact-list-headings {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
