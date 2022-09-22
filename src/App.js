@@ -15,11 +15,19 @@ function App() {
     updateContacts([...contacts, contact]);
   };
 
+  const updateContact = (id, contactInfo) => {
+    contacts[id] = contactInfo;
+  }
+
+  const getContact = (id) => {
+    return contacts[id];
+  };
+
   return (
     <div className="App">
       <h1>My Contacts</h1>
       <ContactForm addContact={addContact}/>
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} getContact={getContact} updateContact={updateContact} />
     </div>
   );
 }
