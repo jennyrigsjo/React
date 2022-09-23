@@ -19,9 +19,6 @@ body {
 .contact-form-container,
 .contact-list-container {
     margin-bottom: 2em;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
 }
 
 .contact-form-container h2,
@@ -29,15 +26,16 @@ body {
     margin-bottom: 1em;
 }
 
-.contact-form .row {
-    margin-bottom: 0.5em;
+.contact-form .row,
+.contact-list .row {
+    margin-bottom: 1em;
 }
-
-/* .contact-form .field {
-    margin-bottom: 0.5em;
-} */
 
 .contact-list-headings {
     font-weight: bold;
     margin-bottom: 0.5em;
+}
+
+.edit-contact-form button {
+    margin-right: 1em;
 }

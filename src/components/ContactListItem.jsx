@@ -9,7 +9,7 @@ export default function ContactListItem({contact, getContact, updateContact, con
 
     const [contactInfo, setContactInfo] = useState(contact);
     const [editMode, setEditMode] = useState({display: "none"});
-    const [viewMode, setViewMode] = useState({display: "block"});
+    const [viewMode, setViewMode] = useState({display: "flex"});
 
     const handleEditContact = () => {
         setEditMode({display: "block"});
@@ -21,24 +21,27 @@ export default function ContactListItem({contact, getContact, updateContact, con
     }
 
     const handleSubmit = (event) => {
+        
         event.preventDefault();
+        
         updateContact(contactID, contactInfo);
-
         let updatedInfo = getContact(contactID);
         setContactInfo(updatedInfo);
 
         setEditMode({display: "none"});
-        setViewMode({display: "block"});
+        setViewMode({display: "flex"});
       };
 
     return (
         <>
         <Row className="row contact-list-item" style={viewMode}>
-            <Col className="col-md-3 fullname">{contactInfo.firstname} {contactInfo.lastname}</Col>
-            <Col className="col-md-2 age">{contactInfo.age}</Col>
-            <Col className="col-md-2 nationality">{contactInfo.nationality}</Col>
-            <Col className="col-md-3 email">{contactInfo.email}</Col>
-            <Col className="col-md-2 action"><button type="button" onClick={() => handleEditContact()}>Edit</button></Col>
+            <Col className="fullname">{contactInfo.firstname} {contactInfo.lastname}</Col>
+            <Col className="age">{contactInfo.age}</Col>
+            <Col className="nationality">{contactInfo.nationality}</Col>
+            <Col className="email">{contactInfo.email}</Col>
+            <Col className="action">
+                <Button variant="primary" type="button" onClick={() => handleEditContact()}>Edit</Button>
+            </Col>
         </Row>
         <Row style={editMode}>
             <Form className="edit-contact-form" onSubmit={handleSubmit}>
@@ -68,17 +71,9 @@ export default function ContactListItem({contact, getContact, updateContact, con
                     </Col>
                 </Row>
 
-                <Button variant="primary" type="submit">Edit Contact</Button>
+                <Button variant="primary" type="submit">Update</Button>
             </Form>
         </Row>
         </>
-        
-
-        // <div className="row contact-list-item">
-        //     <p className="col-md-3 fullname">{contact.firstname} {contact.lastname}</p>
-        //     <p className="col-md-3 age">{contact.age}</p>
-        //     <p className="col-md-3 nationality">{contact.nationality}</p>
-        //     <p className="col-md-3 email">{contact.email}</p>
-        // </div>
     );
 }

@@ -59,35 +59,6 @@ export default function ContactForm({addContact}) {
 
             <Button variant="primary" type="submit">Add Contact</Button>
         </Form>
-
-        {/* <form className="contact-form" onSubmit={handleSubmit}>
-
-          <div className="field">
-            <input type="text" name="firstname" placeholder="First Name" value={contactInfo.firstname} onChange={handleChange} />
-          </div>
-
-          <div className="field">
-            <input type="text" name="lastname" placeholder="Last Name" value={contactInfo.lastname} onChange={handleChange} />
-          </div>
-
-          <div className="field">
-            <input type="number" name="age" placeholder="Age" value={contactInfo.age} onChange={handleChange} />
-          </div>
-
-          <div className="field">
-            <input type="text" name="nationality" placeholder="Nationality" value={contactInfo.nationality} onChange={handleChange} />
-          </div>
-
-          <div className="field">
-            <input type="email" name="email" placeholder="Email" value={contactInfo.email} onChange={handleChange} />
-          </div>
-
-          <div className="field">
-            <input type="submit" name="submit" value="Add contact"/>
-          </div>
-
-        </form> */}
-
       </div>
     );
   }

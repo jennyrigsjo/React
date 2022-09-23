@@ -9,24 +9,14 @@ export default function ContactList({contacts, getContact, updateContact}) {
     ? <p className="no-contacts">(No persons to display)</p> 
     : <Container className="container contact-list">
         <Row className="row contact-list-headings">
-            <Col className="col-md-3 contact-list-heading">Full Name</Col>
-            <Col className="col-md-2 contact-list-heading">Age</Col>
-            <Col className="col-md-2 contact-list-heading">Nationality</Col>
-            <Col className="col-md-3 contact-list-heading">Email Address</Col>
-            <Col className="col-md-2 contact-list-heading">Action</Col>
+            <Col className="contact-list-heading">Full Name</Col>
+            <Col className="contact-list-heading">Age</Col>
+            <Col className="contact-list-heading">Nationality</Col>
+            <Col className="contact-list-heading">Email Address</Col>
+            <Col className="contact-list-heading">Action</Col>
         </Row>
         {contacts.map((contact, index) => (<ContactListItem contact={contact} getContact={getContact} updateContact={updateContact} id={index} key={index}/>))}
       </Container>;
-
-{/* <div className="container-fluid contact-list">
-        <div className="row contact-list-headings">
-            <span className="col-md-3 contact-list-heading">Full Name</span>
-            <span className="col-md-3 contact-list-heading">Age</span>
-            <span className="col-md-3 contact-list-heading">Nationality</span>
-            <span className="col-md-3 contact-list-heading">Email Address</span>
-        </div>
-        {contacts.map((contact, index) => (<ContactListItem contact={contact} key={index}/>))}
-      </div> */}
 
     return (
         <div className="contact-list-container">
