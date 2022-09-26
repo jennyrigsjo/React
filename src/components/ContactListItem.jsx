@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 import { useState } from 'react';
 
-export default function ContactListItem({contact, getContact, updateContact, contactID}) {
+export default function ContactListItem({contact, updateContact, contactID}) {
 
     const [contactInfo, setContactInfo] = useState(contact);
     const [editMode, setEditMode] = useState({display: "none"});
@@ -25,8 +25,6 @@ export default function ContactListItem({contact, getContact, updateContact, con
         event.preventDefault();
         
         updateContact(contactID, contactInfo);
-        let updatedInfo = getContact(contactID);
-        setContactInfo(updatedInfo);
 
         setEditMode({display: "none"});
         setViewMode({display: "flex"});

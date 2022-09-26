@@ -16,18 +16,26 @@ function App() {
   };
 
   const updateContact = (id, contactInfo) => {
-    contacts[id] = contactInfo;
-  }
 
-  const getContact = (id) => {
-    return contacts[id];
-  };
+    const updatedList = contacts.map((contact, index) => {
+      if (index == id) 
+      {
+        return contactInfo;
+      }
+      else
+      {
+        return contact;
+      }
+    });
+
+    updateContacts(updatedList);
+  }
 
   return (
     <div className="App">
       <h1>My Contacts</h1>
       <ContactForm addContact={addContact}/>
-      <ContactList contacts={contacts} getContact={getContact} updateContact={updateContact} />
+      <ContactList contacts={contacts} updateContact={updateContact} />
     </div>
   );
 }
