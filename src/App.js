@@ -1,41 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './custom_styles.css';
 
-import { useState } from 'react';
+import {Routes, Route} from "react-router-dom";
 
-import ContactForm from './components/ContactForm';
-import ContactList from "./components/ContactList";
+import Layout from "./components/shared/Layout";
+import Home from "./pages/Home";
+import Contacts from "./pages/Contacts";
+import Profile from './pages/Profile';
+import Login from "./pages/Login";
+//import Logout from "./pages/Logout";
 
 
 function App() {
-  
-  const [contacts, updateContacts] = useState([]);
-  
-  const addContact = (contact) => {
-    updateContacts([...contacts, contact]);
-  };
-
-  const updateContact = (id, contactInfo) => {
-
-    const updatedList = contacts.map((contact, index) => {
-      if (index == id) 
-      {
-        return contactInfo;
-      }
-      else
-      {
-        return contact;
-      }
-    });
-
-    updateContacts(updatedList);
-  }
-
   return (
     <div className="App">
-      <h1>My Contacts</h1>
-      <ContactForm addContact={addContact}/>
-      <ContactList contacts={contacts} updateContact={updateContact} />
+      <Layout>
+        <Routes>
+          <Route path="/" element={ <Home/> } />
+          <Route path="home" element={ <Home/> } />
+          <Route path="contacts" element={ <Contacts/> } />
+          <Route path="contacts/:id" element={<Profile/>} />
+          <Route path="login" element={ <Login/> } />
+          {/* <Route path="logout" element={ <Logout/> } /> */}
+        </Routes>
+      </Layout>
     </div>
   );
 }

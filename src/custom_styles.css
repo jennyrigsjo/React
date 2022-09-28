@@ -1,5 +1,5 @@
 body {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -11,9 +11,34 @@ body {
     width: 100%;
 }
 
-.App h1 {
+header {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+main {
+    margin-bottom: 2em;
+}
+
+h1 {
     margin-bottom: 1em;
     text-align: center;
+}
+
+h2 {
+    margin-bottom: 1em;
+}
+
+.row {
+    margin-bottom: 1em;
 }
 
 .contact-form-container,
@@ -21,21 +46,18 @@ body {
     margin-bottom: 2em;
 }
 
-.contact-form-container h2,
-.contact-list-container h2 {
-    margin-bottom: 1em;
-}
-
-.contact-form .row,
-.contact-list .row {
-    margin-bottom: 1em;
-}
-
 .contact-list-headings {
     font-weight: bold;
     margin-bottom: 0.5em;
 }
 
-.edit-contact-form button {
+.edit-contactinfo button {
     margin-right: 1em;
+}
+
+footer {
+    border-top: 1px solid black;
+    padding-top: 1em;
+    text-align: center;
+    margin-bottom: 1em;
 }

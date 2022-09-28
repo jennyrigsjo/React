@@ -1,11 +1,14 @@
-import { useState } from "react";
+import {useState, useContext} from "react";
+import {ContactsContext}  from '../services/ContactsContext';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
-export default function ContactForm({addContact}) {
+export default function ContactForm() {
+
+  const {addContact} = useContext(ContactsContext);
 
   const [contactInfo, setContactInfo] = useState({
     firstname: "",
@@ -28,7 +31,7 @@ export default function ContactForm({addContact}) {
     return (
       <div className="contact-form-container">
 
-        <h2>Contact Form</h2>
+        <h2>Add Contact</h2>
 
         <Form className="contact-form" onSubmit={handleSubmit}>
             <Row>
