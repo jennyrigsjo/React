@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Assignment instructions for week 39
+https://github.com/jennyrigsjo/React/blob/week39/React%20Assignment%20-%20Routes.pdf
+
 ## Available Scripts
 
 In the project directory, you can run:
