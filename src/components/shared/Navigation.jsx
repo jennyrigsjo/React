@@ -19,17 +19,25 @@ function Navigation() {
         textDecoration: "none"
     };
 
-    const loginLink = (user.auth) 
-    ? <NavLink onClick={logout} style={{textDecoration: "none"}}>Logout</NavLink> 
-    : <NavLink to="login" style={({ isActive }) => isActive ? activeLink : inactiveLink}>Login</NavLink>;
-
-    return (
-    <Nav>
-        <NavLink to="home" style={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink>
-        <NavLink to="contacts" style={({ isActive }) => isActive ? activeLink : inactiveLink}>Contacts</NavLink>
-        {loginLink}
-    </Nav>
-    );
+    if (user.auth)
+    {
+        return (
+            <Nav>
+                <NavLink to="home" style={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink>
+                <NavLink to="contacts" style={({ isActive }) => isActive ? activeLink : inactiveLink}>Contacts</NavLink>
+                <NavLink onClick={logout} style={{textDecoration: "none"}}>Logout</NavLink>
+            </Nav>
+        );
+    }
+    else
+    {
+        return (
+            <Nav>
+                <NavLink to="home" style={({ isActive }) => isActive ? activeLink : inactiveLink}>Home</NavLink>
+                <NavLink to="login" style={({ isActive }) => isActive ? activeLink : inactiveLink}>Login</NavLink>
+            </Nav>
+        );
+    }
 }
   
 export default Navigation;

@@ -1,6 +1,7 @@
 import {useState, useContext} from "react";
+import {Navigate, useParams} from 'react-router-dom';
 import {ContactsContext}  from '../services/ContactsContext';
-import {useParams} from 'react-router-dom';
+import {UserContext}  from '../services/UserContext';
 
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -8,6 +9,8 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 function Profile() {
+
+    const {user} = useContext(UserContext);
 
     const {getContact} = useContext(ContactsContext);
     const {updateContact} = useContext(ContactsContext);
@@ -41,6 +44,11 @@ function Profile() {
     setEditMode({display: "none"});
     setViewMode({display: "block"});
     };
+
+    if (user.auth == false) 
+    {
+        return (<Navigate to="/login"/>);
+    }
 
     return (
         <>
