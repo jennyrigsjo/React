@@ -22,6 +22,13 @@ header .nav {
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
+    margin-bottom: 1em;
+}
+
+header button.history {
+    margin-right: 1em;
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
 }
 
 main {

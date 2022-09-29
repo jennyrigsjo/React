@@ -1,6 +1,7 @@
 import {useContext} from "react";
 import {UserContext}  from '../../services/UserContext';
 import Navigation from "./Navigation";
+import HistoryButtons from "./HistoryButtons";
 
 function Layout({children}) {
 
@@ -10,7 +11,10 @@ function Layout({children}) {
     return (
     <>
         <header>
-            <Navigation />
+            <div>
+                <Navigation />
+                <HistoryButtons/>
+            </div>
             <p><b>Login status:</b> {userStatus}</p>
         </header>
         
