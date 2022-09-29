@@ -9,7 +9,7 @@ function Contacts() {
 
     const {user} = useContext(UserContext);
 
-    if (user.auth == false) 
+    if (user.auth === false) 
     {
         return (<Navigate to="/login"/>);
     }

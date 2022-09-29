@@ -30,7 +30,7 @@ export function UserProvider({children}) {
 
   const toggleTheme = () => {
 
-    if (themeName == "light")
+    if (themeName === "light")
     {
       setThemeName("dark");
       setTheme(themes.dark);

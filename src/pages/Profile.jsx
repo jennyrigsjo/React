@@ -45,7 +45,7 @@ function Profile() {
     setViewMode({display: "block"});
     };
 
-    if (user.auth == false) 
+    if (user.auth === false) 
     {
         return (<Navigate to="/login"/>);
     }
