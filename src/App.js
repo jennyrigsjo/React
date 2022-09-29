@@ -9,6 +9,7 @@ import Contacts from "./pages/Contacts";
 import Profile from './pages/Profile';
 import Login from "./pages/Login";
 //import Logout from "./pages/Logout";
+import PageNotFound from './pages/PageNotFound';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="contacts/:id" element={<Profile/>} />
           <Route path="login" element={ <Login/> } />
           {/* <Route path="logout" element={ <Logout/> } /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>
     </div>
