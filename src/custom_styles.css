@@ -77,6 +77,10 @@ a:hover {
     margin-bottom: 0.5em;
 }
 
+.onclick-sort:hover {
+    cursor: pointer;
+}
+
 .edit-contactinfo button {
     margin-right: 1em;
 }

@@ -1,5 +1,5 @@
-import {useState, useContext} from "react";
-import {Navigate, useParams} from 'react-router-dom';
+import {useState, useEffect, useContext} from "react";
+import {Navigate, useNavigate, useParams} from 'react-router-dom';
 import {ContactsContext}  from '../services/ContactsContext';
 import {UserContext}  from '../services/UserContext';
 
@@ -8,17 +8,42 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
+import SelectCountryAndCity from '../components/shared/SelectCountryAndCity';
+import SelectLanguages from '../components/shared/SelectLanguages';
+
 function Profile() {
 
     const {user} = useContext(UserContext);
 
     const {getContact} = useContext(ContactsContext);
     const {updateContact} = useContext(ContactsContext);
-    
-    let { id } = useParams();
-    let contact = getContact(id);
+    const {deleteContact} = useContext(ContactsContext);
 
-    const [contactInfo, setContactInfo] = useState(contact);
+    const navigate = useNavigate();
+    
+    let {id} = useParams();
+
+    const initialValues = {
+        id: id,
+        name: "",
+        phone: "",
+        city: "",
+        languages: [],
+    };
+
+    const [contact, setContact] = useState(initialValues);
+    const [contactInfo, setContactInfo] = useState(initialValues);
+
+    const fetchContact = async () => {
+        let contact = await getContact(id);
+        setContact(contact);
+        setContactInfo(contact);
+    }
+
+    useEffect(() => {
+        fetchContact();
+    }, []);
+
     const [editMode, setEditMode] = useState({display: "none"});
     const [viewMode, setViewMode] = useState({display: "block"});
 
@@ -33,7 +58,9 @@ function Profile() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         updateContact(id, contactInfo);
+        fetchContact();
 
         setEditMode({display: "none"});
         setViewMode({display: "block"});
@@ -45,6 +72,11 @@ function Profile() {
     setViewMode({display: "block"});
     };
 
+    const handleDeleteContact = async (id) => {
+        await deleteContact(id);
+        navigate("/contacts");
+    }
+
     if (user.auth === false) 
     {
         return (<Navigate to="/login"/>);
@@ -52,49 +84,42 @@ function Profile() {
 
     return (
         <>
-        <h2>Contact details for {contactInfo.firstname} {contactInfo.lastname}</h2>
+        <h2>Contact details for {contactInfo.name}</h2>
         <div className="view-contactinfo" style={viewMode}>
-            <p className="fullname"><b>First name:</b> {contactInfo.firstname}</p>
-            <p className="fullname"><b>Last name:</b> {contactInfo.lastname}</p>
-            <p className="age"><b>Age:</b> {contactInfo.age}</p>
-            <p className="nationality"><b>Nationality:</b> {contactInfo.nationality}</p>
-            <p className="email"><b>Email:</b> {contactInfo.email}</p>
+            <p className="name"><b>Name:</b> {contactInfo.name}</p>
+            <p className="phone"><b>Phone:</b> {contactInfo.phone}</p>
+            <p className="city"><b>City:</b> {contactInfo.city}</p>
+            <p className="languages"><b>Languages:</b> {contactInfo.languages}</p>
             <p className="action">
-                <Button variant="primary" type="button" onClick={handleEditContact}>Edit</Button>
+                {/* <Button variant="primary" type="button" onClick={handleEditContact}>Edit</Button> */}
+                <Button variant="primary" type="button" onClick={() => handleDeleteContact(id)}>Delete</Button>
             </p>
         </div>
-        <div style={editMode}>
+        {/* <div style={editMode}>
             <Form className="edit-contactinfo" onSubmit={handleSubmit}>
                 <Row>
                     <Col>
-                        <Form.Control type="text" name="firstname" placeholder="First Name" value={contactInfo.firstname} onChange={handleChange} required/>
+                        <Form.Control type="hidden" name="name" value={id} readOnly/>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Form.Control type="text" name="lastname" placeholder="Last Name" value={contactInfo.lastname} onChange={handleChange} required/>
+                        <Form.Control type="text" name="name" placeholder="Full name" value={contactInfo.name} onChange={handleChange} required/>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Form.Control type="number" name="age" placeholder="Age" value={contactInfo.age} onChange={handleChange} required/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Form.Control type="text" name="nationality" placeholder="Nationality" value={contactInfo.nationality} onChange={handleChange} required/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Form.Control type="email" name="email" placeholder="Email" value={contactInfo.email} onChange={handleChange} required/>
+                        <Form.Control type="text" name="phone" placeholder="Phone number" value={contactInfo.phone} onChange={handleChange} required/>
                     </Col>
                 </Row>
 
+                <SelectCountryAndCity contactInfo={contactInfo} setContactInfo={setContactInfo}/>
+                <SelectLanguages contactInfo={contactInfo} setContactInfo={setContactInfo}/>
+                
                 <Button variant="primary" type="submit">Update</Button>
                 <Button variant="warning" type="button" onClick={handleCancelEdit}>Cancel</Button>
             </Form>
-        </div>
+        </div> */}
         </>
     );
 }

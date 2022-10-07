@@ -8,7 +8,7 @@ export default function ContactListItem({contact, contactID}) {
 
     return (
         <Row className="row contact-list-item">
-            <Col className="fullname">{contact.firstname} {contact.lastname}</Col>
+            <Col className="fullname">{contact.name}</Col>
             <Col className="action"><Link to={profileURL}>View details</Link></Col>
         </Row>
     );

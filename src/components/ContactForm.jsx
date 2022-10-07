@@ -6,16 +6,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
+import SelectCountryAndCity from './shared/SelectCountryAndCity';
+import SelectLanguages from './shared/SelectLanguages';
+
 export default function ContactForm() {
 
   const {addContact} = useContext(ContactsContext);
-
   const [contactInfo, setContactInfo] = useState({
-    firstname: "",
-    lastname: "",
-    age: "",
-    nationality: "",
-    email: "",
+    name: "",
+    phone: "",
+    city: "",
+    languages: [],
   });
 
   const handleChange = (event) => {
@@ -25,7 +26,7 @@ export default function ContactForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     addContact(contactInfo);
-    setContactInfo({ firstname: "", lastname: "", age: "", nationality: "", email: ""}); //reset form values after submit
+    setContactInfo({ name: "", phone: "", city: "", languages: []}); //reset form values after submit
   };
 
     return (
@@ -36,30 +37,16 @@ export default function ContactForm() {
         <Form className="contact-form" onSubmit={handleSubmit}>
             <Row>
                 <Col>
-                    <Form.Control type="text" name="firstname" placeholder="First Name" value={contactInfo.firstname} onChange={handleChange} required/>
+                    <Form.Control type="text" name="name" placeholder="Full name" value={contactInfo.name} onChange={handleChange} required/>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <Form.Control type="text" name="lastname" placeholder="Last Name" value={contactInfo.lastname} onChange={handleChange} required/>
+                    <Form.Control type="text" name="phone" placeholder="Phone number" value={contactInfo.phone} onChange={handleChange} required/>
                 </Col>
             </Row>
-            <Row>
-                <Col>
-                    <Form.Control type="number" name="age" placeholder="Age" value={contactInfo.age} onChange={handleChange} required/>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Control type="text" name="nationality" placeholder="Nationality" value={contactInfo.nationality} onChange={handleChange} required/>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Control type="email" name="email" placeholder="Email" value={contactInfo.email} onChange={handleChange} required/>
-                </Col>
-            </Row>
-
+            <SelectCountryAndCity contactInfo={contactInfo} setContactInfo={setContactInfo}/>
+            <SelectLanguages contactInfo={contactInfo} setContactInfo={setContactInfo}/>
             <Button variant="primary" type="submit">Add Contact</Button>
         </Form>
       </div>
